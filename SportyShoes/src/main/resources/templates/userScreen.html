@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Users</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Sporty Shoes</h1>
+
+	<br />
+	<h2>Users Query Result</h2>
+
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Username</th>
+			<th>Password</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Date Created</th>
+		</tr>
+		<tr th:each="user : ${data}">
+			<td class="align-middle" th:text="${user.getId}"></td>
+			<td class="align-middle" th:text="${user.getUsername}"></td>
+			<td class="align-middle" th:text="${user.getPassword}"></td>
+			<td class="align-middle" th:text="${user.getFirstname}"></td>
+			<td class="align-middle" th:text="${user.getLastname}"></td>
+			<td class="align-middle" th:text="${user.getDatesubscribed}"></td>
+		</tr>
+	</table>
+	<br />
+
+	<form action="mainScreen" method="post">
+		<input type="hidden" name="username" value="James Carrot"
+			th:value="${username}" /> <input type="hidden" name="password"
+			value="James Carrot" th:value="${password}" /> <input type="hidden"
+			name="firstname" value="James Carrot" th:value="${firstname}" /> <input
+			type="submit" value="Return to Main Screen" />
+	</form>
+
+</body>
+</html>

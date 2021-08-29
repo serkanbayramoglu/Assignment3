@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Manage Products</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Sporty Shoes</h1><hr>
+
+	<h2>Manage Products</h2>
+
+	<form action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		
+		<table>
+			<tr>
+				<th></th>
+				<th>List Records</th>
+				<th>Add Record</th>
+				<th>Update Record</th>
+				<th>Delete Record</th>
+			</tr>
+			<tr>
+				<td class="align-middle">Products</td>			
+				<td class="align-middle"><input type="radio" id="listproducts" name="actionchoice" value="listproducts" th:checked="${listproductsc}"><label for="listproducts">List</label></td>
+				<td class="align-middle"><input type="radio" id="addproduct" name="actionchoice" value="addproduct" th:checked="${addproductc}"><label for="addproduct">Add</label></td>
+				<td class="align-middle"><input type="radio" id="updateproduct" name="actionchoice" value="updateproduct" th:checked="${updateproductc}"><label for="updateproduct">Update</label></td>
+				<td class="align-middle"><input type="radio" id="deleteproduct" name="actionchoice" value="deleteproduct" th:checked="${deleteproductc}"><label for="deleteproduct">Delete</label></td>
+			</tr>
+			<tr>
+				<td class="align-middle">Categories</td>			
+				<td class="align-middle"><input type="radio" id="listcategories" name="actionchoice" value="listcategories" th:checked="${listcategoriesc}"><label for="listcategories">List</label></td>
+				<td class="align-middle"><input type="radio" id="addcategory" name="actionchoice" value="addcategory" th:checked="${addcategoryc}"><label for="addcategory">Add</label></td>
+				<td class="align-middle"><input type="radio" id="updatecategory" name="actionchoice" value="updatecategory" th:checked="${updatecategoryc}"><label for="updatecategory">Update</label></td>
+				<td class="align-middle"><input type="radio" id="deletecategory" name="actionchoice" value="deletecategory" th:checked="${deletecategoryc}"><label for="deletecategory">Delete</label></td>
+			</tr>			
+			<tr>
+				<td class="align-middle">Brands</td>			
+				<td class="align-middle"><input type="radio" id="listbrands" name="actionchoice" value="listbrands" th:checked="${listbrandsc}"><label for="listbrands">List</label></td>
+				<td class="align-middle"><input type="radio" id="addbrand" name="actionchoice" value="addbrand" th:checked="${addbrandc}"><label for="addbrand">Add</label></td>
+				<td class="align-middle"><input type="radio" id="updatebrand" name="actionchoice" value="updatebrand" th:checked="${updatebrandc}"><label for="updatebrand">Update</label></td>
+				<td class="align-middle"><input type="radio" id="deletebrand" name="actionchoice" value="deletebrand" th:checked="${deletebrandc}"><label for="deletebrand">Delete</label></td>
+			</tr>
+		</table>
+		<br />
+		<input type="submit" name="submitaction" value="Submit Selected Choice" /><br><br>
+	</form><hr>
+	
+	<form th:if="${addbrandc != null}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the new brand name: <input type="text" name="name" /> <br><br>
+		<input type="submit" name="submitaction" value="Add Brandname" />
+	</form>
+	
+	<form th:if="${(updatebrandc != null) && (dataBrand == null)}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the id of the brand entry to be updated: <input type="text" name="updateid" /> <br><br>
+		<input type="submit" name="submitaction" value="Retrieve Brand to Update" />
+	</form>
+	
+	<form th:if="${(updatebrandc != null) && (dataBrand != null)}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		<input type="hidden" name="updateid" value="James Carrot" th:value="${dataBrand.getId}" />
+		
+		ID of the brand entry to be updated: <a th:text="${dataBrand.getId}" /> <br><br>
+		Enter the the new brand name: <input type="text" name="name" th:value="${dataBrand.getBrandname}"/> <br><br>
+		<input type="submit" name="submitaction" value="Update Brandname" />
+	</form>
+
+	<form th:if="${deletebrandc != null}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the id of the brand entry to be deleted: <input type="text" name="updateid" /> <br><br>
+		<input type="submit" name="submitaction" value="Delete Brandname" />
+	</form>
+		
+	<form th:if="${addcategoryc != null}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the new category name: <input type="text" name="name" /> <br>
+		<input type="submit" name="submitaction" value="Add Category" />
+	</form>
+	
+	<form th:if="${(updatecategoryc != null) && (dataCategory == null)}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the id of the category entry to be updated: <input type="text" name="updateid" /> <br><br>
+		<input type="submit" name="submitaction" value="Retrieve Category to Update" />
+	</form>
+	
+	<form th:if="${(updatecategoryc != null) && (dataCategory != null)}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		<input type="hidden" name="updateid" value="James Carrot" th:value="${dataCategory.getId}" />
+		
+		ID of the category entry to be updated: <a th:text="${dataCategory.getId}"/><br> 
+		Enter the the new category name: <input type="text" name="name" th:value="${dataCategory.getCategoryname}" /> <br><br>
+		<input type="submit" name="submitaction" value="Update Category" />
+	</form>
+	
+	<form th:if="${deletecategoryc != null}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the id of the category entry to be deleted: <input type="text" name="updateid" /> <br><br>
+		<input type="submit" name="submitaction" value="Delete Category" />
+	</form>
+	
+	<form th:if="${addproductc != null}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the new serial number: <input type="text" name="serialno" /><br>
+		Enter the new brand ID: <input type="number" name="brandid" /> <br>
+		Enter the new category ID: <input type="number" name="categoryid" /><br>
+		Enter the new price: <input type="number" step="0.01" name="currentprice" /><br>
+		<input type="radio" id="truechoice" name="displaychoice" value="truechoice" th:checked="False"><label for="true">Display the product</label>
+		<input type="radio" id="falsechoice" name="displaychoice" value="falsechoice" th:checked="True"><label for="false">Do not display the product</label><br><br>
+		<input type="submit" name="submitaction" value="Add Product" />
+	</form>
+	
+	<form th:if="${(updateproductc != null) && (dataProduct == null)}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the id of the product entry to be updated: <input type="text" name="updateid" /><br><br>
+		<input type="submit" name="submitaction" value="Retrieve Product to Update" />
+	</form>
+
+	<form th:if="${(updateproductc != null) && (dataProduct != null)}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		<input type="hidden" name="updateid" value="James Carrot" th:value="${dataProduct.getId}" />
+		
+		ID of the product entry to be updated: <a th:text="${dataProduct.getId}" /><br>
+		Enter the new serial number: <input type="text" name="serialno" th:value= "${dataProduct.getSerialno}" /><br>
+		Enter the new brand ID: <input type="number" name="brandid" th:value= "${dataProduct.getBrand.getId}"/> <br>
+		Enter the new category ID: <input type="number" name="categoryid" th:value= "${dataProduct.getCategory.getId}"/><br>
+		Enter the new price: <input type="number" step=0.01 name="currentprice" th:value= "${dataProduct.getCurrentprice}"/><br>
+		<input type="radio" id="truechoice" name="displaychoice" value="truechoice" th:checked="${truechoice}"><label for="true">Display the product</label>
+		<input type="radio" id="falsechoice" name="displaychoice" value="falsechoice" th:checked="${falsechoice}"><label for="false">Do not display the product</label><br><br>
+		<input type="submit" name="submitaction" value="Update Product" />
+	</form>
+	
+	<form th:if="${deleteproductc != null}" action="manage" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="hidden" name="actionchoice" value="James Carrot" th:value="${actionchoice}" />
+		
+		Enter the id of the category entry to be deleted: <input type="text" name="updateid" /> <br><br>
+		<input type="submit" name="submitaction" value="Delete Product" />
+	</form><br>
+	
+	
+	<span style="color: red" th:text="${message}" /><br><hr>
+	
+		<table th:if="${dataProducts != null}">
+		<tr>
+			<th>ID</th>
+			<th>SerialNo</th>
+			<th>CurrentPrice</th>
+			<th>BrandID</th>
+			<th>BrandName</th>
+			<th>CategoryID</th>
+			<th>CategoryName</th>
+			<th>Displayed</th>
+		</tr>
+		<tr th:each="data : ${dataProducts}">
+			<td th:text="${data.getId}"></td>
+			<td th:text="${data.getSerialno}"></td>
+			<td th:text="${data.getCurrentprice}"></td>
+			<td th:text="${data.getBrand.getId}"></td>
+			<td th:text="${data.getBrand.getBrandname}"></td>
+			<td th:text="${data.getCategory.getId}"></td>
+			<td th:text="${data.getCategory.getCategoryname}"></td>
+			<td th:text="${data.isDisplayshoe}"></td>
+		</tr>
+	</table>
+	
+	<table th:if="${dataBrands != null}">
+		<tr>
+			<th>ID</th>
+			<th>BrandName</th>
+
+		</tr>
+		<tr th:each="data : ${dataBrands}">
+			<td th:text="${data.getId}"></td>
+			<td th:text="${data.getBrandname}"></td>
+		</tr>
+	</table>
+	
+	<table th:if="${dataCategories != null}">
+		<tr>
+			<th>ID</th>
+			<th>CategoryName</th>
+		</tr>
+		<tr th:each="data : ${dataCategories}">
+			<td th:text="${data.getId}"></td>
+			<td th:text="${data.getCategoryname}"></td>
+		</tr>
+	</table>
+	
+	<hr>	
+	<form action="mainScreen" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name ="password" value="James Carrot" th:value="${password}"/>
+		<input type="hidden" name ="firstname" value="James Carrot" th:value="${firstname}"/>
+		<input type="submit" value="Return to Main Screen" />
+	</form>
+	
+</body>
+</html>

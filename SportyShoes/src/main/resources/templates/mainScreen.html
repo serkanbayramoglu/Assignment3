@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>MainScreen</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	
+	<h1>Welcome <span th:text="${firstname}" /> </h1>
+
+	<h2>Please select from the below options</h2>
+	
+	<h3>A - Change Password</h3>
+	<form action="changePassword" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="submit" value="Click" /><a> to open the relevant screen</a>
+	</form><br>
+	
+	<h3>B - View User List</h3>	
+	<form action="userList" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="submit" value="Click" /><a> to view users.</a> <br><br>
+		<input type="radio" id="viewall" name="viewoption" value="viewall" checked><label for="viewall">Select to view all users</label><br><br>
+		<input type="radio" id="viewbyusername" name="viewoption" value="viewbyusername"><label for="viewbyusername">Select to search by username and provide the username below:</label><br>
+		User Name: <input type="text" name="userusername" /> <br><br>
+		<input type="radio" id="viewbyname" name="viewoption" value="viewbyname"><label for="viewbyname">Select to search by firstname / lastname and fill any or all of the below:</label><br>
+		First Name: <input type="text" name="userfirstname" /> and 
+		Last Name: <input type="text" name="userlastname" />
+	</form><br>
+	
+	<h3>C - Obtain Purchase Reports</h3>	
+	<form action="seePurchaseReports" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="submit" value="Click" /><a> for purchase reports</a><br><br>
+		<a> To view all purchases, leave the below boxes empty. </a><br><br>
+		<a> For specific search, fill any or all of the following criteria  </a><br>
+		Purchased on dates between: <input type="datetime-local" name="purchasedate1" /> 
+		and <input type="datetime-local" name="purchasedate2" /> and 
+		Category ID:  <input type="number" name="categoryid" /> and  
+		Brand ID:  <input type="number" name="brandid" /><br>
+	</form><br>
+	
+	<h3>D - Manage the products in the store</h3>	
+	<form action="manageProducts" method="post">
+		<input type="hidden" name="username" value="James Carrot" th:value="${username}" />
+		<input type="hidden" name="firstname" value="James Carrot" th:value="${firstname}" />
+		<input type="hidden" name="password" value="James Carrot" th:value="${password}" />
+		<input type="submit" value="Click" /><a> to open the relevant screen</a>
+	</form>
+
+	<h3>E - Logout</h3>	
+	<form action="/" method="post">
+		<input type="submit" value="Click" /><a> to log out</a>
+	</form>	
+	
+</body>
+</html>
